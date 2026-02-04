@@ -21,71 +21,105 @@ body{
   background:linear-gradient(145deg,#0f0c29,#302b63,#24243e);
   border-radius:18px;
   padding:22px;
-  box-shadow:0 0 30px #00ffe1;
+  box-shadow:0 0 18px rgba(0,255,225,.45);
 }
-h1{text-align:center;margin:8px 0;color:#00ffe1}
-h2,h3{text-align:center}
-.demo,.real,.REAL{
+h1,h2,h3{text-align:center;margin:6px 0}
+
+/* subtle neon badge */
+.badge{
   text-align:center;
-  font-weight:900;
-  margin-bottom:10px;
-  letter-spacing:1px;
-}
-.real,.REAL{
+  font-weight:700;
+  font-size:13px;
   color:#00ffe1;
   background:rgba(0,255,225,.08);
   padding:8px;
   border-radius:12px;
-  box-shadow:0 0 15px rgba(0,255,225,.6);
+  margin-bottom:10px;
+  box-shadow:0 0 10px rgba(0,255,225,.5);
 }
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:20px
+}
 .box{
-  height:90px;border-radius:14px;background:#f5c400;
-  display:flex;justify-content:center;align-items:center;
-  font-size:24px;font-weight:900;color:#000;cursor:pointer;
-  box-shadow:0 0 15px #f5c400;
-}
-.btn{
-  width:100%;margin-top:22px;padding:14px;border:none;
-  border-radius:14px;background:#00ffe1;color:#000;
-  font-size:18px;font-weight:bold;cursor:pointer;
-  box-shadow:0 0 20px rgba(0,255,225,.8);
-}
-.join-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
-.join{
-  background:linear-gradient(145deg,#050014,#0f0c29);
-  border:2px solid #00ffe1;
-  color:#00ffe1;
-  padding:14px;
-  border-radius:12px;
+  height:90px;
+  border-radius:14px;
+  background:#f5c400;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:24px;
   font-weight:900;
+  color:#000;
   cursor:pointer;
-  box-shadow:0 0 18px rgba(0,255,225,.6);
-  animation:pulse 1.8s infinite;
+  box-shadow:0 0 10px #f5c400;
+}
+
+.btn{
+  width:100%;
+  margin-top:18px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:#00ffe1;
+  color:#000;
+  font-size:17px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 0 14px rgba(0,255,225,.7);
+}
+
+.join-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+
+/* medium neon join buttons */
+.join{
+  background:#0b0f2a;
+  border:1.5px solid #00ffe1;
+  color:#00ffe1;
+  padding:13px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s ease;
+  box-shadow:0 0 8px rgba(0,255,225,.6);
 }
 .join:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 30px #00ffe1;
+  background:#00ffe1;
+  color:#000;
+  box-shadow:0 0 16px rgba(0,255,225,1);
 }
 .join.clicked{
   background:#00ffe1;
   color:#000;
-  animation:none;
+  opacity:.85;
 }
-@keyframes pulse{
-  0%{box-shadow:0 0 10px rgba(0,255,225,.4)}
-  50%{box-shadow:0 0 25px rgba(0,255,225,1)}
-  100%{box-shadow:0 0 10px rgba(0,255,225,.4)}
-}
+
 input{
   width:100%;
-  padding:14px;
+  padding:13px;
   border-radius:12px;
   border:none;
-  margin-top:18px;
-  font-size:15px;
+  margin-top:16px;
 }
-.status{text-align:center;margin-top:15px;font-weight:bold}
+
+.note{
+  text-align:center;
+  font-size:13px;
+  margin-top:14px;
+  color:#00ffe1;
+  opacity:.9;
+  text-shadow:0 0 6px rgba(0,255,225,.7);
+}
+
+.status{text-align:center;margin-top:14px;font-weight:600}
 .check{color:#00ffe1}
 .fail{color:#ff4d4d}
 </style>
@@ -96,8 +130,8 @@ input{
 <!-- PAGE 1 -->
 <div class="page active" id="p1">
   <div class="card">
-    <div class="real">REAL CASH WIN • FAST • TRY YOUR LUCK</div>
-    <h1>TAP AND WIN</h1>
+    <div class="badge">REAL CASH • TRY YOUR LUCK</div>
+    <h1>TAP & WIN</h1>
     <div class="grid">
       <div class="box" onclick="tapWin(1000)">TAP</div>
       <div class="box" onclick="tapWin(2000)">TAP</div>
@@ -110,20 +144,18 @@ input{
 <!-- PAGE 2 -->
 <div class="page" id="p2">
   <div class="card">
-    <div class="real">LUCKY USER SELECTED</div>
-    <h1>🎉 Congratulations</h1>
+    <div class="badge">CONGRATULATIONS</div>
     <h2>You Win ₹<span id="winAmt"></span></h2>
     <div class="status check" id="checkText"></div>
     <button class="btn" onclick="startCheck()">Withdraw</button>
   </div>
 </div>
 
-<!-- PAGE 3 (PREMIUM JOIN PAGE) -->
+<!-- PAGE 3 -->
 <div class="page" id="p3">
   <div class="card">
-    <div class="REAL">🔥 JOIN ALL CHANNELS & UNLOCK WITHDRAW 🔥</div>
-    <h2>COMPLETE REQUIRED TASK</h2>
-    <h3>CONFIRMED REWARD ₹<span id="winAmt2"></span></h3>
+    <div class="badge">Complete Task to Unlock Withdraw</div>
+    <h3>Reward ₹<span id="winAmt2"></span></h3>
 
     <div class="join-grid">
       <button class="join" data-link="https://t.me/+9A0TYIrM4uxiMTU1">JOIN</button>
@@ -142,19 +174,23 @@ input{
       <button class="join" data-link="https://t.me/+HUFfJX4cvEo2MWY9">JOIN</button>
     </div>
 
-    <input placeholder="Submit your UPI ID">
-    <button class="btn" onclick="withdraw()">WITHDRAW NOW</button>
+    <input placeholder="Enter your UPI ID">
+
+    <!-- extra text above last button -->
+    <div class="note">⚡ Join all channels to activate instant withdrawal</div>
+
+    <button class="btn" onclick="withdraw()">Withdraw Now</button>
   </div>
 </div>
 
 <!-- PAGE 4 -->
 <div class="page" id="p4">
   <div class="card">
-    <div class="REAL">PAYMENT CONFIRMED</div>
-    <h1>✅ Payment Successful</h1>
+    <div class="badge">SUCCESS</div>
+    <h2>Payment Successful</h2>
     <p style="text-align:center">
-      Amount ₹<span id="winAmt3"></span><br>
-      Received in 2 hours
+      ₹<span id="winAmt3"></span><br>
+      Credited in 2 hours
     </p>
   </div>
 </div>
@@ -170,13 +206,13 @@ function tapWin(a){
 }
 function startCheck(){
   const t=document.getElementById("checkText");
-  t.innerText="Checking withdrawal eligibility...";
+  t.innerText="Checking...";
   t.className="status check";
   setTimeout(()=>{
-    t.innerText="❌ Withdrawal Failed! Complete tasks first";
+    t.innerText="Withdrawal failed. Complete task.";
     t.className="status fail";
-    setTimeout(()=>go(3),1500);
-  },2000);
+    setTimeout(()=>go(3),1200);
+  },1800);
 }
 document.querySelectorAll(".join").forEach(b=>{
   b.onclick=()=>{
@@ -186,7 +222,7 @@ document.querySelectorAll(".join").forEach(b=>{
 });
 function withdraw(){
   if(document.querySelectorAll(".join.clicked").length<14){
-    alert("Join all channels first!");
+    alert("Please join all channels");
     return;
   }
   go(4);
