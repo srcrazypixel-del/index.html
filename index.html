@@ -1,186 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Neon Recharge Real</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<title>Scratch & Win</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{
-  margin:0;height:100vh;overflow:hidden;
+  margin:0;
   background:#050014;
-  font-family:Arial,sans-serif;
   color:#fff;
-  display:flex;justify-content:center;align-items:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
 }
-.bg{
-  position:fixed;inset:0;
-  background:
-    radial-gradient(circle at 20% 30%, #00f0ff22, transparent 45%),
-    radial-gradient(circle at 80% 70%, #ff00ff22, transparent 45%);
-  z-index:-1;
-}
+.page{display:none;width:100%;max-width:420px;padding:15px}
+.active{display:block}
 .card{
-  width:94%;max-width:420px;max-height:92vh;
-  overflow-y:auto;
-  background:rgba(15,10,35,.88);
-  padding:20px;border-radius:20px;
-  box-shadow:0 0 18px #00f0ff66,inset 0 0 15px #ffffff0a;
+  background:linear-gradient(145deg,#0f0c29,#302b63,#24243e);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 0 30px #00ffe1;
 }
-h2{text-align:center;text-shadow:0 0 12px #00f0ff}
-.note{text-align:center;font-size:12px;opacity:.75}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.box,.channel{
-  padding:12px;border-radius:12px;text-align:center;
-  background:#0f0c22;border:1px solid #00f0ff33;
-  cursor:pointer;transition:.25s;
-  font-weight:bold;
+h1{text-align:center;margin:8px 0;color:#00ffe1}
+h2,h3{text-align:center}
+.demo,.real,.REAL{
+  text-align:center;
+  font-weight:900;
+  margin-bottom:10px;
+  letter-spacing:1px;
 }
-.box.active,.channel.joined{
-  background:#00f0ff;color:#000;
-  box-shadow:0 0 14px #00f0ff;
+.real,.REAL{
+  color:#00ffe1;
+  background:rgba(0,255,225,.08);
+  padding:8px;
+  border-radius:12px;
+  box-shadow:0 0 15px rgba(0,255,225,.6);
+}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.box{
+  height:90px;border-radius:14px;background:#f5c400;
+  display:flex;justify-content:center;align-items:center;
+  font-size:24px;font-weight:900;color:#000;cursor:pointer;
+  box-shadow:0 0 15px #f5c400;
+}
+.btn{
+  width:100%;margin-top:22px;padding:14px;border:none;
+  border-radius:14px;background:#00ffe1;color:#000;
+  font-size:18px;font-weight:bold;cursor:pointer;
+  box-shadow:0 0 20px rgba(0,255,225,.8);
+}
+.join-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+.join{
+  background:linear-gradient(145deg,#050014,#0f0c29);
+  border:2px solid #00ffe1;
+  color:#00ffe1;
+  padding:14px;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 0 18px rgba(0,255,225,.6);
+  animation:pulse 1.8s infinite;
+}
+.join:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 30px #00ffe1;
+}
+.join.clicked{
+  background:#00ffe1;
+  color:#000;
+  animation:none;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 10px rgba(0,255,225,.4)}
+  50%{box-shadow:0 0 25px rgba(0,255,225,1)}
+  100%{box-shadow:0 0 10px rgba(0,255,225,.4)}
 }
 input{
-  width:100%;padding:13px;margin-top:12px;
-  border-radius:12px;border:none;
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  margin-top:18px;
+  font-size:15px;
 }
-button{
-  width:100%;margin-top:14px;padding:13px;
-  border:none;border-radius:12px;
-  background:linear-gradient(135deg,#00f0ff,#00ff99);
-  color:#000;font-size:16px;
-  box-shadow:0 0 16px #00f0ff;
-}
-.hidden{display:none}
-.loading{text-align:center;padding:25px 0;font-size:18px}
-.channels{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.small{text-align:center;font-size:13px;opacity:.8}
+.status{text-align:center;margin-top:15px;font-weight:bold}
+.check{color:#00ffe1}
+.fail{color:#ff4d4d}
 </style>
 </head>
 
 <body>
-<div class="bg"></div>
 
-<!-- SIM -->
-<div class="card" id="simPage">
-<h2>Select SIM</h2>
-<p class="note">TG Promotion</p>
-<div class="grid">
-<div class="box" onclick="pickSim(this,'Airtel')">Airtel</div>
-<div class="box" onclick="pickSim(this,'Jio')">Jio</div>
-<div class="box" onclick="pickSim(this,'VI')">VI</div>
-<div class="box" onclick="pickSim(this,'Other')">Other</div>
-</div>
-<button onclick="goPlan()">Next</button>
-</div>
-
-<!-- PLAN -->
-<div class="card hidden" id="planPage">
-<h2>Select Plan</h2>
-<div class="grid">
-<div class="box" onclick="pickPlan(this,199)">₹199</div>
-<div class="box" onclick="pickPlan(this,299)">₹299</div>
-<div class="box" onclick="pickPlan(this,349)">₹349</div>
-<div class="box" onclick="pickPlan(this,699)">₹699</div>
-</div>
-<input id="number" placeholder="Enter mobile number">
-<button onclick="startCheck()">Confirm</button>
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <div class="card">
+    <div class="real">REAL CASH WIN • FAST • TRY YOUR LUCK</div>
+    <h1>TAP AND WIN</h1>
+    <div class="grid">
+      <div class="box" onclick="tapWin(1000)">TAP</div>
+      <div class="box" onclick="tapWin(2000)">TAP</div>
+      <div class="box" onclick="tapWin(500)">TAP</div>
+      <div class="box" onclick="tapWin(800)">TAP</div>
+    </div>
+  </div>
 </div>
 
-<!-- CHECK -->
-<div class="card hidden" id="checkPage">
-<p class="loading">Checking recharge status...</p>
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <div class="card">
+    <div class="real">LUCKY USER SELECTED</div>
+    <h1>🎉 Congratulations</h1>
+    <h2>You Win ₹<span id="winAmt"></span></h2>
+    <div class="status check" id="checkText"></div>
+    <button class="btn" onclick="startCheck()">Withdraw</button>
+  </div>
 </div>
 
-<!-- FAILED -->
-<div class="card hidden" id="failPage">
-<h2>Recharge Failed</h2>
-<p class="small">Join all channels to retry</p>
+<!-- PAGE 3 (PREMIUM JOIN PAGE) -->
+<div class="page" id="p3">
+  <div class="card">
+    <div class="REAL">🔥 JOIN ALL CHANNELS & UNLOCK WITHDRAW 🔥</div>
+    <h2>COMPLETE REQUIRED TASK</h2>
+    <h3>CONFIRMED REWARD ₹<span id="winAmt2"></span></h3>
+
+    <div class="join-grid">
+      <button class="join" data-link="https://t.me/+9A0TYIrM4uxiMTU1">JOIN</button>
+      <button class="join" data-link="https://t.me/+HwCci2iEcIJmZGZl">JOIN</button>
+      <button class="join" data-link="https://t.me/+mskHTMcU0yRiZjFl">JOIN</button>
+      <button class="join" data-link="https://t.me/+OpZHrH_dcno0ZWY9">JOIN</button>
+      <button class="join" data-link="https://t.me/+UWVseACH3SQ2NTFl">JOIN</button>
+      <button class="join" data-link="https://t.me/+rk4IEx11XgthNjNl">JOIN</button>
+      <button class="join" data-link="https://t.me/+Vonw-wq8vDhjMmNl">JOIN</button>
+      <button class="join" data-link="https://t.me/+7PMxNn4IEU1lMzA1">JOIN</button>
+      <button class="join" data-link="https://t.me/+FS1XwjTaK5k5NWE1">JOIN</button>
+      <button class="join" data-link="https://t.me/+kTTDjOfqvVo5MmQ9">JOIN</button>
+      <button class="join" data-link="https://t.me/+NQNeGwYqJcAzYzQ1">JOIN</button>
+      <button class="join" data-link="https://t.me/addlist/VxLDLMo9HFI4YWY1">JOIN</button>
+      <button class="join" data-link="https://t.me/+nA_kj35mzrsyMmNl">JOIN</button>
+      <button class="join" data-link="https://t.me/+HUFfJX4cvEo2MWY9">JOIN</button>
+    </div>
+
+    <input placeholder="Submit your UPI ID">
+    <button class="btn" onclick="withdraw()">WITHDRAW NOW</button>
+  </div>
 </div>
 
-<!-- JOIN -->
-<div class="card hidden" id="joinPage">
-<h2>JOIN ALL CHANNEL AND SUBMIT RECHARGE</h2>
-<p id="info" class="small"></p>
-<div class="channels" id="channelBox"></div>
-<button onclick="submitRecharge()">Recharge Submit</button>
-</div>
-
-<!-- SUCCESS -->
-<div class="card hidden" id="successPage">
-<h2>Recharge Successful</h2>
-<p id="final" class="small"></p>
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <div class="card">
+    <div class="REAL">PAYMENT CONFIRMED</div>
+    <h1>✅ Payment Successful</h1>
+    <p style="text-align:center">
+      Amount ₹<span id="winAmt3"></span><br>
+      Received in 2 hours
+    </p>
+  </div>
 </div>
 
 <script>
-let sim="",plan="",num="",joined=0;
-
-/* 🔥 TOTAL 16 JOIN BUTTON 🔥 */
-const links=[
-"https://t.me/+9A0TYIrM4uxiMTU1",
-"https://t.me/+HwCci2iEcIJmZGZl",
-"https://t.me/+mskHTMcU0yRiZjFl",
-"https://t.me/+OpZHrH_dcno0ZWY9",
-"https://t.me/+UWVseACH3SQ2NTFl",
-"https://t.me/+rk4IEx11XgthNjNl",
-"https://t.me/+iQNReM6VfQVkOWU1",
-"https://t.me/+Vonw-wq8vDhjMmNl",
-"https://t.me/+7PMxNn4IEU1lMzA1",
-"https://t.me/+FS1XwjTaK5k5NWE1",
-"https://t.me/+kTTDjOfqvVo5MmQ9",
-"https://t.me/+NQNeGwYqJcAzYzQ1",
-"https://t.me/addlist/VxLDLMo9HFI4YWY1",
-"https://t.me/+nA_kj35mzrsyMmNl",
-"https://t.me/addlist/VxLDLMo9HFI4YWY1",
-"https://t.me/+HUFfJX4cvEo2MWY9"
-];
-
-function pickSim(el,s){
-document.querySelectorAll('#simPage .box').forEach(b=>b.classList.remove('active'));
-el.classList.add('active');sim=s;
-}
-function goPlan(){
-if(!sim){alert("Select SIM");return;}
-simPage.classList.add("hidden");
-planPage.classList.remove("hidden");
-}
-function pickPlan(el,p){
-document.querySelectorAll('#planPage .box').forEach(b=>b.classList.remove('active'));
-el.classList.add('active');plan=p;
+let win=0;
+function tapWin(a){
+  win=a;
+  winAmt.innerText=win;
+  winAmt2.innerText=win;
+  winAmt3.innerText=win;
+  go(2);
 }
 function startCheck(){
-num=number.value;
-if(!plan||num.length<10){alert("Invalid details");return;}
-planPage.classList.add("hidden");
-checkPage.classList.remove("hidden");
-setTimeout(()=>{
-checkPage.classList.add("hidden");
-failPage.classList.remove("hidden");
-setTimeout(()=>{
-failPage.classList.add("hidden");
-joinPage.classList.remove("hidden");
-info.innerText=`SIM: ${sim} | ₹${plan} | ${num}`;
-let html="";
-links.forEach(l=>{
-html+=`<div class="channel" onclick="join(this,'${l}')">𝗝𝗢𝗜𝗡</div>`;
+  const t=document.getElementById("checkText");
+  t.innerText="Checking withdrawal eligibility...";
+  t.className="status check";
+  setTimeout(()=>{
+    t.innerText="❌ Withdrawal Failed! Complete tasks first";
+    t.className="status fail";
+    setTimeout(()=>go(3),1500);
+  },2000);
+}
+document.querySelectorAll(".join").forEach(b=>{
+  b.onclick=()=>{
+    window.open(b.dataset.link,"_blank");
+    b.classList.add("clicked");
+  }
 });
-channelBox.innerHTML=html;
-},1200);
-},1800);
+function withdraw(){
+  if(document.querySelectorAll(".join.clicked").length<14){
+    alert("Join all channels first!");
+    return;
+  }
+  go(4);
 }
-function join(el,link){
-if(!el.classList.contains("joined")){
-el.classList.add("joined");
-joined++;
-window.open(link,"_blank");
-}
-}
-function submitRecharge(){
-if(joined<links.length){alert("Join all channels");return;}
-joinPage.classList.add("hidden");
-successPage.classList.remove("hidden");
-final.innerText=`${num} (₹${plan})`;
+function go(n){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("p"+n).classList.add("active");
 }
 </script>
 
