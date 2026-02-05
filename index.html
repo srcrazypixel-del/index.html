@@ -1,126 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Join All Channels</title>
+<title>Neon Recharge Demo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+*{box-sizing:border-box}
 body{
-  margin:0;
-  min-height:100vh;
+  margin:0;height:100vh;overflow:hidden;
   background:#050014;
-  display:flex;
-  justify-content:center;
-  align-items:center;
   font-family:Arial,sans-serif;
   color:#fff;
+  display:flex;justify-content:center;align-items:center;
+}
+.bg{
+  position:fixed;inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, #00f0ff22, transparent 45%),
+    radial-gradient(circle at 80% 70%, #ff00ff22, transparent 45%);
+  z-index:-1;
 }
 .card{
-  width:94%;
-  max-width:420px;
-  background:rgba(15,10,35,.9);
-  padding:20px;
-  border-radius:20px;
-  box-shadow:0 0 20px #00f0ff66;
+  width:94%;max-width:420px;max-height:92vh;
+  overflow-y:auto;
+  background:rgba(15,10,35,.88);
+  padding:20px;border-radius:20px;
+  box-shadow:0 0 18px #00f0ff66,inset 0 0 15px #ffffff0a;
 }
-h2{
-  text-align:center;
-  margin-bottom:10px;
-  text-shadow:0 0 10px #00f0ff;
-}
-.small{
-  text-align:center;
-  font-size:13px;
-  opacity:.8;
-}
-.join-box{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:15px;
-}
-button.join{
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #00f0ff55;
-  background:#0f0c22;
-  color:#fff;
+h2{text-align:center;text-shadow:0 0 12px #00f0ff}
+.note{text-align:center;font-size:12px;opacity:.75}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box,.channel{
+  padding:12px;border-radius:12px;text-align:center;
+  background:#0f0c22;border:1px solid #00f0ff33;
+  cursor:pointer;transition:.25s;
   font-weight:bold;
-  cursor:pointer;
-  transition:.25s;
 }
-button.join:hover{
-  box-shadow:0 0 12px #00f0ff;
-}
-button.join.joined{
-  background:#00f0ff;
-  color:#000;
+.box.active,.channel.joined{
+  background:#00f0ff;color:#000;
   box-shadow:0 0 14px #00f0ff;
 }
-button.submit{
-  width:100%;
-  margin-top:15px;
-  padding:13px;
-  border:none;
-  border-radius:12px;
-  font-size:16px;
+input{
+  width:100%;padding:13px;margin-top:12px;
+  border-radius:12px;border:none;
+}
+button{
+  width:100%;margin-top:14px;padding:13px;
+  border:none;border-radius:12px;
   background:linear-gradient(135deg,#00f0ff,#00ff99);
-  color:#000;
+  color:#000;font-size:16px;
   box-shadow:0 0 16px #00f0ff;
 }
+.hidden{display:none}
+.loading{text-align:center;padding:25px 0;font-size:18px}
+.channels{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.small{text-align:center;font-size:13px;opacity:.8}
 </style>
 </head>
 
 <body>
+<div class="bg"></div>
 
-<div class="card">
-  <h2>Join All Channels</h2>
-  <p class="small">Join all 14 channels to continue</p>
+<!-- SIM -->
+<div class="card" id="simPage">
+<h2>Select SIM</h2>
+<p class="note">TG Promotion</p>
+<div class="grid">
+<div class="box" onclick="pickSim(this,'Airtel')">Airtel</div>
+<div class="box" onclick="pickSim(this,'Jio')">Jio</div>
+<div class="box" onclick="pickSim(this,'VI')">VI</div>
+<div class="box" onclick="pickSim(this,'Other')">Other</div>
+</div>
+<button onclick="goPlan()">Next</button>
+</div>
 
-  <div class="join-box">
-    <button class="join" data-link="https://t.me/+9A0TYIrM4uxiMTU1">JOIN</button>
-    <button class="join" data-link="https://t.me/+HwCci2iEcIJmZGZl">JOIN</button>
-    <button class="join" data-link="https://t.me/+UWVseACH3SQ2NTFl">JOIN</button>
-    <button class="join" data-link="https://t.me/+mskHTMcU0yRiZjFl">JOIN</button>
-    <button class="join" data-link="https://t.me/+rk4IEx11XgthNjNl">JOIN</button>
-    <button class="join" data-link="https://t.me/+OpZHrH_dcno0ZWY9">JOIN</button>
-    <button class="join" data-link="https://t.me/+7PMxNn4IEU1lMzA1">JOIN</button>
-    <button class="join" data-link="https://t.me/+Vonw-wq8vDhjMmNl">JOIN</button>
-    <button class="join" data-link="https://t.me/+FS1XwjTaK5k5NWE1">JOIN</button>
-    <button class="join" data-link="https://t.me/+kTTDjOfqvVo5MmQ9">JOIN</button>
-    <button class="join" data-link="https://t.me/+NQNeGwYqJcAzYzQ1">JOIN</button>
-    <button class="join" data-link="https://t.me/addlist/1bh4SNNvDd84NGNl">JOIN</button>
-    <button class="join" data-link="https://t.me/+nA_kj35mzrsyMmNl">JOIN</button>
-    <button class="join" data-link="https://t.me/+vzyZfQeRgww1ODQ1">JOIN</button>
-  </div>
+<!-- PLAN -->
+<div class="card hidden" id="planPage">
+<h2>Select Plan</h2>
+<div class="grid">
+<div class="box" onclick="pickPlan(this,199)">₹199</div>
+<div class="box" onclick="pickPlan(this,299)">₹299</div>
+<div class="box" onclick="pickPlan(this,349)">₹349</div>
+<div class="box" onclick="pickPlan(this,699)">₹699</div>
+</div>
+<input id="number" placeholder="Enter mobile number">
+<button onclick="startCheck()">Confirm</button>
+</div>
 
-  <button class="submit" onclick="checkJoin()">Continue</button>
+<!-- CHECK -->
+<div class="card hidden" id="checkPage">
+<p class="loading">Checking recharge status...</p>
+</div>
+
+<!-- FAILED -->
+<div class="card hidden" id="failPage">
+<h2>Recharge Failed</h2>
+<p class="small">Join all channels to retry</p>
+</div>
+
+<!-- JOIN -->
+<div class="card hidden" id="joinPage">
+<h2>Join All Channels</h2>
+<p id="info" class="small"></p>
+<div class="channels" id="channelBox"></div>
+<button onclick="submitRecharge()">Recharge Submit</button>
+</div>
+
+<!-- SUCCESS -->
+<div class="card hidden" id="successPage">
+<h2>Recharge Successful</h2>
+<p id="final" class="small"></p>
 </div>
 
 <script>
-let joined = 0;
-const joins = document.querySelectorAll(".join");
+let sim="",plan="",num="",joined=0;
 
-joins.forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    if(btn.classList.contains("joined")) return;
+/* ✅ EXACT 14 LINKS – SAME ORDER */
+const links=[
+  "https://t.me/+9A0TYIrM4uxiMTU1",
+  "https://t.me/+HwCci2iEcIJmZGZl",
+  "https://t.me/+UWVseACH3SQ2NTFl",
+  "https://t.me/+mskHTMcU0yRiZjFl",
+  "https://t.me/+rk4IEx11XgthNjNl",
+  "https://t.me/+OpZHrH_dcno0ZWY9",
+  "https://t.me/+7PMxNn4IEU1lMzA1",
+  "https://t.me/+Vonw-wq8vDhjMmNl",
+  "https://t.me/+FS1XwjTaK5k5NWE1",
+  "https://t.me/+kTTDjOfqvVo5MmQ9",
+  "https://t.me/+NQNeGwYqJcAzYzQ1",
+  "https://t.me/addlist/1bh4SNNvDd84NGNl",
+  "https://t.me/+nA_kj35mzrsyMmNl",
+  "https://t.me/+vzyZfQeRgww1ODQ1"
+];
 
-    const link = btn.getAttribute("data-link");
-    window.open(link,"_blank");
-
-    btn.classList.add("joined");
-    btn.innerText = "JOINED";
-    joined++;
-  });
+function pickSim(el,s){
+document.querySelectorAll('#simPage .box').forEach(b=>b.classList.remove('active'));
+el.classList.add('active');sim=s;
+}
+function goPlan(){
+if(!sim){alert("Select SIM");return;}
+simPage.classList.add("hidden");
+planPage.classList.remove("hidden");
+}
+function pickPlan(el,p){
+document.querySelectorAll('#planPage .box').forEach(b=>b.classList.remove('active'));
+el.classList.add('active');plan=p;
+}
+function startCheck(){
+num=number.value;
+if(!plan||num.length<10){alert("Invalid details");return;}
+planPage.classList.add("hidden");
+checkPage.classList.remove("hidden");
+setTimeout(()=>{
+checkPage.classList.add("hidden");
+failPage.classList.remove("hidden");
+setTimeout(()=>{
+failPage.classList.add("hidden");
+joinPage.classList.remove("hidden");
+info.innerText=`SIM: ${sim} | ₹${plan} | ${num}`;
+let html="";
+links.forEach(l=>{
+html+=`<div class="channel" onclick="join(this,'${l}')">𝗝𝗢𝗜𝗡</div>`;
 });
-
-function checkJoin(){
-  if(joined < joins.length){
-    alert("Please join all channels first!");
-  }else{
-    alert("All channels joined successfully ✅");
-  }
+channelBox.innerHTML=html;
+},1200);
+},1800);
+}
+function join(el,link){
+if(!el.classList.contains("joined")){
+el.classList.add("joined");
+joined++;
+window.open(link,"_blank");
+}
+}
+function submitRecharge(){
+if(joined<links.length){alert("Join all channels");return;}
+joinPage.classList.add("hidden");
+successPage.classList.remove("hidden");
+final.innerText=`${num} (₹${plan})`;
 }
 </script>
 
