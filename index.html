@@ -2,234 +2,125 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Scratch & Win</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join All Channels</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-*{box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{
   margin:0;
-  background:#050014;
-  color:#fff;
-  display:flex;
-  justify-content:center;
-  align-items:center;
   min-height:100vh;
-}
-.page{display:none;width:100%;max-width:420px;padding:15px}
-.active{display:block}
-.card{
-  background:linear-gradient(145deg,#0f0c29,#302b63,#24243e);
-  border-radius:18px;
-  padding:22px;
-  box-shadow:0 0 18px rgba(0,255,225,.45);
-}
-h1,h2,h3{text-align:center;margin:6px 0}
-
-/* subtle neon badge */
-.badge{
-  text-align:center;
-  font-weight:700;
-  font-size:13px;
-  color:#00ffe1;
-  background:rgba(0,255,225,.08);
-  padding:8px;
-  border-radius:12px;
-  margin-bottom:10px;
-  box-shadow:0 0 10px rgba(0,255,225,.5);
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin-top:20px
-}
-.box{
-  height:90px;
-  border-radius:14px;
-  background:#f5c400;
+  background:#050014;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:24px;
-  font-weight:900;
-  color:#000;
-  cursor:pointer;
-  box-shadow:0 0 10px #f5c400;
+  font-family:Arial,sans-serif;
+  color:#fff;
 }
-
-.btn{
-  width:100%;
-  margin-top:18px;
-  padding:14px;
-  border:none;
-  border-radius:14px;
-  background:#00ffe1;
-  color:#000;
-  font-size:17px;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:0 0 14px rgba(0,255,225,.7);
+.card{
+  width:94%;
+  max-width:420px;
+  background:rgba(15,10,35,.9);
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 20px #00f0ff66;
 }
-
-.join-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:16px;
+h2{
+  text-align:center;
+  margin-bottom:10px;
+  text-shadow:0 0 10px #00f0ff;
 }
-
-/* medium neon join buttons */
-.join{
-  background:#0b0f2a;
-  border:1.5px solid #00ffe1;
-  color:#00ffe1;
-  padding:13px;
-  border-radius:12px;
-  font-weight:700;
-  cursor:pointer;
-  transition:.25s ease;
-  box-shadow:0 0 8px rgba(0,255,225,.6);
-}
-.join:hover{
-  background:#00ffe1;
-  color:#000;
-  box-shadow:0 0 16px rgba(0,255,225,1);
-}
-.join.clicked{
-  background:#00ffe1;
-  color:#000;
-  opacity:.85;
-}
-
-input{
-  width:100%;
-  padding:13px;
-  border-radius:12px;
-  border:none;
-  margin-top:16px;
-}
-
-.note{
+.small{
   text-align:center;
   font-size:13px;
-  margin-top:14px;
-  color:#00ffe1;
-  opacity:.9;
-  text-shadow:0 0 6px rgba(0,255,225,.7);
+  opacity:.8;
 }
-
-.status{text-align:center;margin-top:14px;font-weight:600}
-.check{color:#00ffe1}
-.fail{color:#ff4d4d}
+.join-box{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+button.join{
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #00f0ff55;
+  background:#0f0c22;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.25s;
+}
+button.join:hover{
+  box-shadow:0 0 12px #00f0ff;
+}
+button.join.joined{
+  background:#00f0ff;
+  color:#000;
+  box-shadow:0 0 14px #00f0ff;
+}
+button.submit{
+  width:100%;
+  margin-top:15px;
+  padding:13px;
+  border:none;
+  border-radius:12px;
+  font-size:16px;
+  background:linear-gradient(135deg,#00f0ff,#00ff99);
+  color:#000;
+  box-shadow:0 0 16px #00f0ff;
+}
 </style>
 </head>
 
 <body>
 
-<!-- PAGE 1 -->
-<div class="page active" id="p1">
-  <div class="card">
-    <div class="badge">REAL CASH • TRY YOUR LUCK</div>
-    <h1>TAP & WIN</h1>
-    <div class="grid">
-      <div class="box" onclick="tapWin(1000)">TAP</div>
-      <div class="box" onclick="tapWin(2000)">TAP</div>
-      <div class="box" onclick="tapWin(500)">TAP</div>
-      <div class="box" onclick="tapWin(800)">TAP</div>
-    </div>
+<div class="card">
+  <h2>Join All Channels</h2>
+  <p class="small">Join all 14 channels to continue</p>
+
+  <div class="join-box">
+    <button class="join" data-link="https://t.me/+9A0TYIrM4uxiMTU1">JOIN</button>
+    <button class="join" data-link="https://t.me/+HwCci2iEcIJmZGZl">JOIN</button>
+    <button class="join" data-link="https://t.me/+UWVseACH3SQ2NTFl">JOIN</button>
+    <button class="join" data-link="https://t.me/+mskHTMcU0yRiZjFl">JOIN</button>
+    <button class="join" data-link="https://t.me/+rk4IEx11XgthNjNl">JOIN</button>
+    <button class="join" data-link="https://t.me/+OpZHrH_dcno0ZWY9">JOIN</button>
+    <button class="join" data-link="https://t.me/+7PMxNn4IEU1lMzA1">JOIN</button>
+    <button class="join" data-link="https://t.me/+Vonw-wq8vDhjMmNl">JOIN</button>
+    <button class="join" data-link="https://t.me/+FS1XwjTaK5k5NWE1">JOIN</button>
+    <button class="join" data-link="https://t.me/+kTTDjOfqvVo5MmQ9">JOIN</button>
+    <button class="join" data-link="https://t.me/+NQNeGwYqJcAzYzQ1">JOIN</button>
+    <button class="join" data-link="https://t.me/addlist/1bh4SNNvDd84NGNl">JOIN</button>
+    <button class="join" data-link="https://t.me/+nA_kj35mzrsyMmNl">JOIN</button>
+    <button class="join" data-link="https://t.me/+vzyZfQeRgww1ODQ1">JOIN</button>
   </div>
-</div>
 
-<!-- PAGE 2 -->
-<div class="page" id="p2">
-  <div class="card">
-    <div class="badge">CONGRATULATIONS</div>
-    <h2>You Win ₹<span id="winAmt"></span></h2>
-    <div class="status check" id="checkText"></div>
-    <button class="btn" onclick="startCheck()">Withdraw</button>
-  </div>
-</div>
-
-<!-- PAGE 3 -->
-<div class="page" id="p3">
-  <div class="card">
-    <div class="badge">Complete Task to Unlock Withdraw</div>
-    <h3>Reward ₹<span id="winAmt2"></span></h3>
-
-    <div class="join-grid">
-      <button class="join" data-link="https://t.me/+9A0TYIrM4uxiMTU1">JOIN</button>
-      <button class="join" data-link="https://t.me/+HwCci2iEcIJmZGZl">JOIN</button>
-      <button class="join" data-link="https://t.me/+UWVseACH3SQ2NTFl">JOIN</button>
-      <button class="join" data-link="https://t.me/+mskHTMcU0yRiZjFl">JOIN</button>
-      <button class="join" data-link="https://t.me/+rk4IEx11XgthNjNl">JOIN</button>
-      <button class="join" data-link="https://t.me/+OpZHrH_dcno0ZWY9">JOIN</button>
-      <button class="join" data-link="https://t.me/+7PMxNn4IEU1lMzA1">JOIN</button>
-      <button class="join" data-link="https://t.me/+Vonw-wq8vDhjMmNl">JOIN</button>
-      <button class="join" data-link="https://t.me/+FS1XwjTaK5k5NWE1">JOIN</button>
-      <button class="join" data-link="https://t.me/+kTTDjOfqvVo5MmQ9">JOIN</button>
-      <button class="join" data-link="https://t.me/+NQNeGwYqJcAzYzQ1">JOIN</button>
-      <button class="join" data-link="https://t.me/addlist/1bh4SNNvDd84NGNl">JOIN</button>
-      <button class="join" data-link="https://t.me/+nA_kj35mzrsyMmNl">JOIN</button>
-      <button class="join" data-link="https://t.me/+vzyZfQeRgww1ODQ1">JOIN</button>
-    </div>
-
-    <input placeholder="Enter your UPI ID">
-
-    <!-- extra text above last button -->
-    <div class="note">⚡ Join all channels to activate instant withdrawal</div>
-
-    <button class="btn" onclick="withdraw()">Withdraw Now</button>
-  </div>
-</div>
-
-<!-- PAGE 4 -->
-<div class="page" id="p4">
-  <div class="card">
-    <div class="badge">SUCCESS</div>
-    <h2>Payment Successful</h2>
-    <p style="text-align:center">
-      ₹<span id="winAmt3"></span><br>
-      Credited in 2 hours
-    </p>
-  </div>
+  <button class="submit" onclick="checkJoin()">Continue</button>
 </div>
 
 <script>
-let win=0;
-function tapWin(a){
-  win=a;
-  winAmt.innerText=win;
-  winAmt2.innerText=win;
-  winAmt3.innerText=win;
-  go(2);
-}
-function startCheck(){
-  const t=document.getElementById("checkText");
-  t.innerText="Checking...";
-  t.className="status check";
-  setTimeout(()=>{
-    t.innerText="Withdrawal failed. Complete task.";
-    t.className="status fail";
-    setTimeout(()=>go(3),1200);
-  },1800);
-}
-document.querySelectorAll(".join").forEach(b=>{
-  b.onclick=()=>{
-    window.open(b.dataset.link,"_blank");
-    b.classList.add("clicked");
-  }
+let joined = 0;
+const joins = document.querySelectorAll(".join");
+
+joins.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    if(btn.classList.contains("joined")) return;
+
+    const link = btn.getAttribute("data-link");
+    window.open(link,"_blank");
+
+    btn.classList.add("joined");
+    btn.innerText = "JOINED";
+    joined++;
+  });
 });
-function withdraw(){
-  if(document.querySelectorAll(".join.clicked").length<14){
-    alert("Please join all channels");
-    return;
+
+function checkJoin(){
+  if(joined < joins.length){
+    alert("Please join all channels first!");
+  }else{
+    alert("All channels joined successfully ✅");
   }
-  go(4);
-}
-function go(n){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById("p"+n).classList.add("active");
 }
 </script>
 
