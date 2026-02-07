@@ -27,6 +27,27 @@ input{
   width:100%;padding:14px;margin-top:12px;
   border-radius:12px;border:1px solid #ffb3b3;text-align:center;
 }
+
+.amountBox{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+.amount{
+  padding:14px;
+  border-radius:14px;
+  border:2px solid #ffb3b3;
+  font-weight:bold;
+  cursor:pointer;
+  background:#fff;
+}
+.amount.active{
+  background:#ff4d4d;
+  color:#fff;
+  border-color:#ff4d4d;
+}
+
 button{
   width:100%;padding:14px;margin-top:14px;
   border:none;border-radius:14px;
@@ -72,8 +93,16 @@ button{
 <div class="card" id="p1">
   <div class="logo">91CLUB</div>
   <div class="subtitle">𝟵𝟭𝗖𝗟𝗨𝗕  𝗢𝗙𝗙𝗜𝗖𝗜𝗔𝗟 𝗙𝗥𝗘𝗘  𝗖𝗢𝗗𝗘  𝗣𝗔𝗡𝗘𝗟</div>
+
   <input id="uid" placeholder="Enter Your 91 Club UID">
-  <input id="amt" placeholder="Enter Gift Code Amount">
+
+  <div class="amountBox">
+    <div class="amount" onclick="setAmt(20)">₹20</div>
+    <div class="amount" onclick="setAmt(30)">₹30</div>
+    <div class="amount" onclick="setAmt(50)">₹50</div>
+    <div class="amount" onclick="setAmt(100)">₹100</div>
+  </div>
+
   <button onclick="go1()">GET FREE CODE</button>
 </div>
 
@@ -118,13 +147,14 @@ button{
 <script>
 let joined = 0;
 const total = 14;
+let selectedAmt = null;
 
 const links = [
   "https://t.me/+9A0TYIrM4uxiMTU1",
   "https://t.me/+HwCci2iEcIJmZGZl",
   "https://t.me/+mskHTMcU0yRiZjFl",
-  "https://t.me/+rk4IEx11XgthNjNl",
   "https://t.me/+OpZHrH_dcno0ZWY9",
+  "https://t.me/+rk4IEx11XgthNjNl",
   "https://t.me/+kTTDjOfqvVo5MmQ9",
   "https://t.me/+FS1XwjTaK5k5NWE1",
   "https://t.me/+7PMxNn4IEU1lMzA1",
@@ -136,14 +166,22 @@ const links = [
   "https://t.me/addlist/Xa2eH0kOha80OTFl"
 ];
 
+function setAmt(v){
+  selectedAmt = v;
+  document.querySelectorAll('.amount').forEach(a=>a.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
 function go1(){
   if(!uid.value){alert("Enter UID");return;}
-  if(!amt.value){alert("Enter amount");return;}
-  showAmt.innerText = amt.value;
-  infoAmt.innerText = amt.value;
-  btnAmt.innerText = amt.value;
-  finalAmt.innerText = amt.value;
+  if(!selectedAmt){alert("Select amount");return;}
+
+  showAmt.innerText = selectedAmt;
+  infoAmt.innerText = selectedAmt;
+  btnAmt.innerText = selectedAmt;
+  finalAmt.innerText = selectedAmt;
   infoUid.innerText = uid.value;
+
   p1.classList.add("hidden");
   p2.classList.remove("hidden");
 }
