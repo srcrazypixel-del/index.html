@@ -1,148 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>🌹 Rose Day Special Recharge</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>91 Club Free Code Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box;font-family:Arial,sans-serif}
 body{
-  margin:0;height:100vh;overflow:hidden;
-  background:linear-gradient(180deg,#12000a,#050014);
-  font-family:Arial,sans-serif;
-  color:#fff;
-  display:flex;justify-content:center;align-items:center;
-}
-.bg{
-  position:fixed;inset:0;
-  background:
-    radial-gradient(circle at 20% 20%, #ff4d6d33, transparent 45%),
-    radial-gradient(circle at 80% 70%, #ff99aa22, transparent 45%);
-  z-index:-1;
+  margin:0;min-height:100vh;
+  background:linear-gradient(180deg,#ff9a9a,#ffd6c9);
+  display:flex;align-items:center;justify-content:center;
 }
 .card{
-  width:94%;max-width:420px;max-height:92vh;
-  overflow-y:auto;
-  background:rgba(20,5,15,.9);
-  padding:20px;border-radius:18px;
-  box-shadow:0 0 18px #ff4d6d55;
-}
-h2{
+  width:94%;max-width:420px;
+  background:#ffffffee;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 12px 30px #ff6b6b55;
   text-align:center;
-  color:#ff9aaa;
-  text-shadow:0 0 10px #ff4d6d;
 }
-.note,.small{
-  text-align:center;
-  font-size:12px;
-  opacity:.8;
-}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-.box,.channel{
-  padding:12px;border-radius:12px;
-  text-align:center;
-  background:#1a0a12;
-  border:1px solid #ff4d6d44;
-  cursor:pointer;
-  font-weight:bold;
-}
-.box.active,.channel.joined{
-  background:#ff4d6d;
-  color:#000;
-  box-shadow:0 0 12px #ff4d6d;
-}
+.logo{font-size:26px;font-weight:900;color:#ff4d4d}
+.subtitle{font-size:13px;color:#666;margin-bottom:14px}
 
 input{
-  width:100%;padding:13px;margin-top:12px;
-  border-radius:12px;border:none;
+  width:100%;padding:14px;margin-top:12px;
+  border-radius:12px;border:1px solid #ffb3b3;text-align:center;
 }
 button{
-  width:100%;margin-top:14px;padding:13px;
-  border:none;border-radius:12px;
-  background:linear-gradient(135deg,#ff4d6d,#ff9aaa);
-  color:#000;font-size:16px;
-  box-shadow:0 0 14px #ff4d6d;
+  width:100%;padding:14px;margin-top:14px;
+  border:none;border-radius:14px;
+  background:linear-gradient(135deg,#ff4d4d,#ffb3b3);
+  color:#fff;font-weight:bold;font-size:15px;cursor:pointer;
 }
 .hidden{display:none}
-.loading{text-align:center;padding:25px 0;font-size:17px}
+
+.infoBox{
+  background:#fff5f5;
+  border:1px solid #ffb3b3;
+  border-radius:14px;
+  padding:12px;
+  font-size:13px;
+  margin-bottom:14px;
+  color:#444;
+}
 
 .channels{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:10px;
+  gap:10px;
+  margin-top:12px;
 }
-.count{
-  text-align:center;
-  font-size:13px;
-  margin-top:8px;
-  opacity:.85;
+.ch{
+  padding:12px;border-radius:12px;
+  border:1px solid #ff9a9a;
+  font-weight:bold;cursor:pointer;background:#fff;
+}
+.ch.joined{background:#ff4d4d;color:#fff}
+
+.count{font-size:12px;margin-top:10px;color:#555}
+.code{
+  font-size:16px;font-weight:bold;
+  color:#ff4d4d;word-break:break-all;margin-top:10px;
 }
 </style>
 </head>
 
 <body>
-<div class="bg"></div>
 
-<!-- SIM -->
-<div class="card" id="simPage">
-<h2>🌹 Rose Day Free Recharge</h2>
-<p class="note">Special Reward • Select Your Sim</p>
-<div class="grid">
-<div class="box" onclick="pickSim(this,'Airtel')">Airtel</div>
-<div class="box" onclick="pickSim(this,'Jio')">Jio</div>
-<div class="box" onclick="pickSim(this,'VI')">VI</div>
-<div class="box" onclick="pickSim(this,'Other')">Other</div>
-</div>
-<button onclick="goPlan()">Next</button>
+<!-- PAGE 1 -->
+<div class="card" id="p1">
+  <div class="logo">91CLUB</div>
+  <div class="subtitle">𝟵𝟭𝗖𝗟𝗨𝗕  𝗢𝗙𝗙𝗜𝗖𝗜𝗔𝗟 𝗙𝗥𝗘𝗘  𝗖𝗢𝗗𝗘  𝗣𝗔𝗡𝗘𝗟</div>
+  <input id="uid" placeholder="Enter Your 91 Club UID">
+  <input id="amt" placeholder="Enter Gift Code Amount">
+  <button onclick="go1()">GET FREE CODE</button>
 </div>
 
-<!-- PLAN -->
-<div class="card hidden" id="planPage">
-<h2>Select Reward Amount</h2>
-<div class="grid">
-<div class="box" onclick="pickPlan(this,199)">₹199</div>
-<div class="box" onclick="pickPlan(this,299)">₹299</div>
-<div class="box" onclick="pickPlan(this,349)">₹349</div>
-<div class="box" onclick="pickPlan(this,699)">₹699</div>
-</div>
-<input id="number" placeholder="Enter mobile number">
-<button onclick="startCheck()">Confirm</button>
+<!-- PAGE 2 -->
+<div class="card hidden" id="p2">
+  <h3>🎉 Congratulations</h3>
+  <p>You won a <b>₹<span id="showAmt"></span> Gift Code</b></p>
+  <button onclick="goConnect()">CLAIM CODE</button>
 </div>
 
-<!-- CHECK -->
-<div class="card hidden" id="checkPage">
-<p class="loading">🌹 Verifying Rose Day reward...</p>
+<!-- PAGE 3 -->
+<div class="card hidden" id="pConnect">
+  <h3>✅ CONNECTING</h3>
+  <p>Your Code Has Been Ready</p>
+  <p>Please Complete Next Page Task</p>
 </div>
 
-<!-- FAILED -->
-<div class="card hidden" id="failPage">
-<h2>Verification Pending</h2>
-<p class="small">Complete Rose Day task to continue</p>
+<!-- PAGE 4 -->
+<div class="card hidden" id="pJoin">
+  <h3>COMPLETE YOUR TASK</h3>
+
+  <div class="infoBox">
+    <b>UID:</b> <span id="infoUid"></span><br>
+    <b>Code Amount:</b> ₹<span id="infoAmt"></span><br>
+    <b>Status:</b> Join All Channels To Unlock Code
+  </div>
+
+  <div class="channels" id="chs"></div>
+  <div class="count" id="cnt">Joined: 0 / 14</div>
+
+  <button onclick="claim()">₹<span id="btnAmt"></span> CODE CLAIM</button>
 </div>
 
-<!-- JOIN -->
-<div class="card hidden" id="joinPage">
-<h2>Complete Rose Day Task</h2>
-<p id="info" class="small"></p>
-<div class="channels" id="channelBox"></div>
-<p class="count" id="count">Joined: 0 / 14</p>
-<button onclick="submitRecharge()">Submit</button>
-</div>
-
-<!-- SUCCESS -->
-<div class="card hidden" id="successPage">
-<h2>🎉 Congratulations</h2>
-<p id="final" class="small"></p>
-<p class="note">Rose Day reward processing<br>⏳ up to 1 hour (Real)</p>
+<!-- PAGE 5 -->
+<div class="card hidden" id="pFinal">
+  <h3>✅ Your Code Is Ready</h3>
+  <p>₹<span id="finalAmt"></span> Gift Code</p>
+  <div class="code">C6DD460F11A4CA0CFD1E31024EF9E4D9</div>
+  <button onclick="copy()">COPY & CLAIM</button>
 </div>
 
 <script>
-let sim="",plan="",num="",joined=0;
+let joined = 0;
+const total = 14;
 
-const links=[
+const links = [
   "https://t.me/+9A0TYIrM4uxiMTU1",
   "https://t.me/+HwCci2iEcIJmZGZl",
   "https://t.me/+mskHTMcU0yRiZjFl",
@@ -159,51 +136,52 @@ const links=[
   "https://t.me/addlist/Xa2eH0kOha80OTFl"
 ];
 
-function pickSim(el,s){
-document.querySelectorAll('#simPage .box').forEach(b=>b.classList.remove('active'));
-el.classList.add('active');sim=s;
+function go1(){
+  if(!uid.value){alert("Enter UID");return;}
+  if(!amt.value){alert("Enter amount");return;}
+  showAmt.innerText = amt.value;
+  infoAmt.innerText = amt.value;
+  btnAmt.innerText = amt.value;
+  finalAmt.innerText = amt.value;
+  infoUid.innerText = uid.value;
+  p1.classList.add("hidden");
+  p2.classList.remove("hidden");
 }
-function goPlan(){
-if(!sim){alert("Select SIM");return;}
-simPage.classList.add("hidden");
-planPage.classList.remove("hidden");
+
+function goConnect(){
+  p2.classList.add("hidden");
+  pConnect.classList.remove("hidden");
+  setTimeout(()=>{
+    pConnect.classList.add("hidden");
+    pJoin.classList.remove("hidden");
+    let h="";
+    links.forEach(l=>{
+      h += `<div class="ch" onclick="join(this,'${l}')">JOIN</div>`;
+    });
+    chs.innerHTML = h;
+  }, 2200);
 }
-function pickPlan(el,p){
-document.querySelectorAll('#planPage .box').forEach(b=>b.classList.remove('active'));
-el.classList.add('active');plan=p;
+
+function join(el, link){
+  if(el.classList.contains("joined")) return;
+  el.classList.add("joined");
+  joined++;
+  cnt.innerText = `Joined: ${joined} / ${total}`;
+  window.open(link, "_blank");
 }
-function startCheck(){
-num=number.value;
-if(!plan||num.length<10){alert("Invalid details");return;}
-planPage.classList.add("hidden");
-checkPage.classList.remove("hidden");
-setTimeout(()=>{
-checkPage.classList.add("hidden");
-failPage.classList.remove("hidden");
-setTimeout(()=>{
-failPage.classList.add("hidden");
-joinPage.classList.remove("hidden");
-info.innerText=`SIM: ${sim} | Reward: ₹${plan} | ${num}`;
-let html="";
-links.forEach(l=>{
-html+=`<div class="channel" onclick="join(this,'${l}')">JOIN</div>`;
-});
-channelBox.innerHTML=html;
-},1200);
-},1800);
+
+function claim(){
+  if(joined < total){
+    alert("Join all channels then claim your code");
+    return;
+  }
+  pJoin.classList.add("hidden");
+  pFinal.classList.remove("hidden");
 }
-function join(el,link){
-if(el.classList.contains("joined"))return;
-el.classList.add("joined");
-joined++;
-count.innerText=`Joined: ${joined} / 14`;
-window.open(link,"_blank");
-}
-function submitRecharge(){
-if(joined<links.length){alert("Complete all tasks");return;}
-joinPage.classList.add("hidden");
-successPage.classList.remove("hidden");
-final.innerText=`₹${plan} Rose Day Reward`;
+
+function copy(){
+  navigator.clipboard.writeText("C6DD460F11A4CA0CFD1E31024EF9E4D9");
+  alert("Code copied");
 }
 </script>
 
