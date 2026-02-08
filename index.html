@@ -2,88 +2,161 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>91 Club Free Code Panel</title>
+<title>Free UPI Cash • Real</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
+*{box-sizing:border-box;font-family:Segoe UI,Arial}
 body{
   margin:0;min-height:100vh;
-  background:linear-gradient(180deg,#ff9a9a,#ffd6c9);
+  background:radial-gradient(circle at top,#0b1f44,#02010a);
   display:flex;align-items:center;justify-content:center;
-}
-.card{
-  width:94%;max-width:420px;
-  background:#ffffffee;
-  border-radius:18px;
-  padding:22px;
-  box-shadow:0 12px 30px #ff6b6b55;
-  text-align:center;
-}
-.logo{font-size:26px;font-weight:900;color:#ff4d4d}
-.subtitle{font-size:13px;color:#666;margin-bottom:14px}
-
-input{
-  width:100%;padding:14px;margin-top:12px;
-  border-radius:12px;border:1px solid #ffb3b3;text-align:center;
-}
-
-.amountBox{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:12px;
-}
-.amount{
-  padding:14px;
-  border-radius:14px;
-  border:2px solid #ffb3b3;
-  font-weight:bold;
-  cursor:pointer;
-  background:#fff;
-}
-.amount.active{
-  background:#ff4d4d;
   color:#fff;
-  border-color:#ff4d4d;
 }
 
-button{
-  width:100%;padding:14px;margin-top:14px;
-  border:none;border-radius:14px;
-  background:linear-gradient(135deg,#ff4d4d,#ffb3b3);
-  color:#fff;font-weight:bold;font-size:15px;cursor:pointer;
+/* CARD */
+.card{
+  width:360px;
+  background:linear-gradient(180deg,#07112e,#020616);
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 0 45px rgba(0,240,255,.25);
+  text-align:center;
 }
 .hidden{display:none}
 
-.infoBox{
-  background:#fff5f5;
-  border:1px solid #ffb3b3;
-  border-radius:14px;
-  padding:12px;
-  font-size:13px;
-  margin-bottom:14px;
-  color:#444;
+/* TITLES */
+h1{
+  margin:0;
+  font-size:20px;
+  letter-spacing:1px;
+  color:#00f0ff;
+}
+.sub{font-size:12px;opacity:.75;margin-top:6px}
+
+/* BUTTON */
+.btn{
+  width:100%;padding:15px;
+  border:none;border-radius:18px;
+  background:linear-gradient(135deg,#00f0ff,#0066ff);
+  color:#001018;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 0 26px rgba(0,234,255,.9);
+}
+.btn:disabled{background:#333;color:#aaa;box-shadow:none}
+
+/* SLOT */
+.slotWrap{
+  margin:20px 0;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#020b22,#020616);
+  border:1px solid rgba(0,234,255,.35);
+}
+.slot{display:flex;gap:14px;justify-content:center}
+.reel{
+  width:78px;height:78px;
+  border-radius:18px;
+  background:#020617;
+  border:2px solid #00eaff;
+  font-size:34px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 16px rgba(0,234,255,.6);
 }
 
-.channels{
+/* WIN CARD (PRO STYLE) */
+.winCard{
+  margin:16px 0;
+  padding:18px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#00ffe0,#009dff);
+  color:#001018;
+  box-shadow:0 0 25px rgba(0,255,255,.9),
+             inset 0 0 10px rgba(255,255,255,.4);
+}
+.winCard .title{
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.6px;
+}
+.winCard .amount{
+  font-size:42px;
+  font-weight:900;
+  margin-top:6px;
+}
+.badge{
+  margin-top:8px;
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  background:#001018;
+  color:#00ffcc;
+  font-size:11px;
+  font-weight:700;
+}
+
+/* LOADER */
+.loader{
+  width:46px;height:46px;
+  border:5px solid #222;
+  border-top:5px solid #00eaff;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  margin:24px auto;
+}
+@keyframes spin{100%{transform:rotate(360deg)}}
+
+/* TASK */
+.grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:12px;
+  gap:12px;
+  margin-top:14px;
 }
-.ch{
-  padding:12px;border-radius:12px;
-  border:1px solid #ff9a9a;
-  font-weight:bold;cursor:pointer;background:#fff;
+.join{
+  padding:13px 0;
+  border-radius:16px;
+  border:2px solid #00d9ff;
+  background:linear-gradient(180deg,#02162e,#020617);
+  color:#00f0ff;
+  font-weight:900;
+  letter-spacing:1.4px;
+  cursor:pointer;
 }
-.ch.joined{background:#ff4d4d;color:#fff}
+.join::before{content:"𝗝𝗢𝗜𝗡"}
+.join.done{
+  background:linear-gradient(135deg,#00ff9c,#00c2ff);
+  color:#001018;
+  border:none;
+  box-shadow:0 0 20px rgba(0,255,180,.9);
+}
+.join.done::before{content:"𝗝𝗢𝗜𝗡𝗘𝗗"}
 
-.count{font-size:12px;margin-top:10px;color:#555}
-.code{
-  font-size:16px;font-weight:bold;
-  color:#ff4d4d;word-break:break-all;margin-top:10px;
+/* PROGRESS */
+.progressWrap{
+  margin:12px 0 6px;
+  background:#061530;
+  border-radius:10px;overflow:hidden;
 }
+.progress{
+  height:9px;width:0%;
+  background:linear-gradient(90deg,#00ffcc,#0099ff);
+}
+.count{font-size:11px;opacity:.75}
+
+/* UPI */
+.upiBox{margin-top:12px}
+.upiBox input{
+  width:100%;padding:13px;
+  border-radius:14px;
+  border:2px solid #00cfff;
+  background:#081a3f;color:#fff;
+}
+.upiBox.disabled input{opacity:.4;border-color:#444}
+.upiBox.active{box-shadow:0 0 16px rgba(0,255,255,.9)}
+
+.footer{margin-top:10px;font-size:11px;opacity:.55}
 </style>
 </head>
 
@@ -91,65 +164,76 @@ button{
 
 <!-- PAGE 1 -->
 <div class="card" id="p1">
-  <div class="logo">91CLUB</div>
-  <div class="subtitle">𝟵𝟭𝗖𝗟𝗨𝗕 𝗢𝗙𝗙𝗜𝗖𝗜𝗔𝗟 𝗙𝗥𝗘𝗘 𝗖𝗢𝗗𝗘 𝗣𝗔𝗡𝗘𝗟</div>
-
-  <input id="uid" placeholder="Enter Your 91 Club UID">
-
-  <div class="amountBox">
-    <div class="amount" onclick="setAmt(20)">₹20</div>
-    <div class="amount" onclick="setAmt(30)">₹30</div>
-    <div class="amount" onclick="setAmt(50)">₹50</div>
-    <div class="amount" onclick="setAmt(100)">₹100</div>
+  <h1>FREE UPI CASH</h1>
+  <div class="sub">Spin & Win Rewards</div>
+  <div class="slotWrap">
+    <div class="slot">
+      <div class="reel" id="r1">₹</div>
+      <div class="reel" id="r2">₹</div>
+      <div class="reel" id="r3">₹</div>
+    </div>
   </div>
-
-  <button onclick="go1()">GET FREE CODE</button>
+  <button class="btn" onclick="spin()">SPIN NOW</button>
 </div>
 
 <!-- PAGE 2 -->
 <div class="card hidden" id="p2">
-  <h3>🎉 Congratulations</h3>
-  <p>You won a <b>₹<span id="showAmt"></span> Gift Code</b></p>
-  <button onclick="goConnect()">CLAIM CODE</button>
+  <h1>CONGRATULATIONS 🎉</h1>
+  <div class="sub">Your reward is ready</div>
+
+  <div class="winCard">
+    <div class="title">YOU HAVE WON</div>
+    <div class="amount">₹<span id="winAmt">0</span></div>
+    <div class="badge">100% VERIFIED WIN</div>
+  </div>
+
+  <button class="btn" onclick="goTasks()">PROCEED</button>
+  <div class="footer">Demo Interface • No real payment</div>
 </div>
 
 <!-- PAGE 3 -->
-<div class="card hidden" id="pConnect">
-  <h3>✅ CONNECTING</h3>
-  <p>Your Code Has Been Ready</p>
-  <p>Please Complete Next Page Task</p>
+<div class="card hidden" id="p3">
+  <h1>CONNECTING</h1>
+  <div class="loader"></div>
+  <div class="sub">Please wait…</div>
 </div>
 
 <!-- PAGE 4 -->
-<div class="card hidden" id="pJoin">
-  <h3>COMPLETE YOUR TASK</h3>
+<div class="card hidden" id="p4">
+  <h1>COMPLETE YOUR TASK</h1>
 
-  <div class="infoBox">
-    <b>UID:</b> <span id="infoUid"></span><br>
-    <b>Code Amount:</b> ₹<span id="infoAmt"></span><br>
-    <b>Status:</b> Join All Channels To Unlock Code
+  <div class="winStrip">
+    <div>ᴀɴᴅ ᴡɪᴛʜᴅʀᴀᴡ ʏᴏᴜʀ ᴍᴏɴᴇʏ</div>
+    <span>YOU WON ₹<span id="finalAmt"></span></span>
   </div>
 
-  <div class="channels" id="chs"></div>
-  <div class="count" id="cnt">Joined: 0 / 16</div>
+  <div class="grid" id="grid"></div>
 
-  <button onclick="claim()">₹<span id="btnAmt"></span> CODE CLAIM</button>
+  <div class="progressWrap"><div class="progress" id="bar"></div></div>
+  <div class="count">Joined <span id="count">0</span> / 16</div>
+
+  <div class="upiBox disabled" id="upiBox">
+    <input id="upi" placeholder="Enter UPI ID" disabled>
+  </div>
+
+  <button class="btn" id="withdraw" disabled onclick="finalWithdraw()">WITHDRAW MONEY</button>
 </div>
 
 <!-- PAGE 5 -->
-<div class="card hidden" id="pFinal">
-  <h3>✅ Your Code Is Ready</h3>
-  <p>₹<span id="finalAmt"></span> Gift Code</p>
-  <div class="code">C6DD460F11A4CA0CFD1E31024EF9E4D9</div>
-  <button onclick="copy()">COPY & CLAIM</button>
+<div class="card hidden" id="p5">
+  <h1>WITHDRAW SUCCESSFUL</h1>
+  <div class="winStrip">
+    <div>AMOUNT</div>
+    <span>₹<span id="doneAmt"></span></span>
+  </div>
+  <div class="sub">Payment will be transferred within 1 hour</div>
 </div>
 
 <script>
-let joined = 0;
-const total = 16;
-let selectedAmt = null;
+let amount=0,joined=0,total=16;
 
-const links = [
+// 16 join links
+const joinLinks = [
   "https://t.me/+9A0TYIrM4uxiMTU1",
   "https://t.me/+FQrDWvbNRnllODE1",
   "https://t.me/+HwCci2iEcIJmZGZl",
@@ -168,60 +252,63 @@ const links = [
   "https://t.me/addlist/SLERmbBZS2JjYjdl"
 ];
 
-function setAmt(v){
-  selectedAmt = v;
-  document.querySelectorAll('.amount').forEach(a=>a.classList.remove('active'));
-  event.target.classList.add('active');
+function spin(){
+  let c=0;
+  let iv=setInterval(()=>{
+    r1.innerText=Math.floor(Math.random()*9);
+    r2.innerText=Math.floor(Math.random()*9);
+    r3.innerText=Math.floor(Math.random()*9);
+    if(++c>15){
+      clearInterval(iv);
+      amount=Math.floor(Math.random()*101)+600;
+      winAmt.innerText=amount;
+      setTimeout(()=>{p1.classList.add("hidden");p2.classList.remove("hidden");},300);
+    }
+  },120);
 }
 
-function go1(){
-  if(!uid.value){alert("Enter UID");return;}
-  if(!selectedAmt){alert("Select amount");return;}
-
-  showAmt.innerText = selectedAmt;
-  infoAmt.innerText = selectedAmt;
-  btnAmt.innerText = selectedAmt;
-  finalAmt.innerText = selectedAmt;
-  infoUid.innerText = uid.value;
-
-  p1.classList.add("hidden");
-  p2.classList.remove("hidden");
-}
-
-function goConnect(){
+function goTasks(){
   p2.classList.add("hidden");
-  pConnect.classList.remove("hidden");
+  p3.classList.remove("hidden");
   setTimeout(()=>{
-    pConnect.classList.add("hidden");
-    pJoin.classList.remove("hidden");
-    let h="";
-    links.forEach(l=>{
-      h += `<div class="ch" onclick="join(this,'${l}')">JOIN</div>`;
-    });
-    chs.innerHTML = h;
-  }, 2200);
+    p3.classList.add("hidden");
+    p4.classList.remove("hidden");
+    finalAmt.innerText=amount;
+    loadJoin();
+  },1600);
 }
 
-function join(el, link){
-  if(el.classList.contains("joined")) return;
-  el.classList.add("joined");
-  joined++;
-  cnt.innerText = `Joined: ${joined} / ${total}`;
-  window.open(link, "_blank");
+function loadJoin(){
+  const grid = document.getElementById("grid");
+  joinLinks.forEach(link=>{
+    const b=document.createElement("button");
+    b.className="join";
+    b.onclick=()=>{
+      if(b.classList.contains("done")) return;
+      window.open(link,"_blank");
+      b.classList.add("done");
+      joined++;
+      document.getElementById("count").innerText=joined;
+      document.getElementById("bar").style.width=(joined/total*100)+"%";
+      if(joined===total){
+        const upi=document.getElementById("upi");
+        upi.disabled=false;
+        document.getElementById("withdraw").disabled=false;
+        const upiBox=document.getElementById("upiBox");
+        upiBox.classList.remove("disabled");
+        upiBox.classList.add("active");
+      }
+    };
+    grid.appendChild(b);
+  });
 }
 
-function claim(){
-  if(joined < total){
-    alert("Join all channels then claim your code");
-    return;
-  }
-  pJoin.classList.add("hidden");
-  pFinal.classList.remove("hidden");
-}
-
-function copy(){
-  navigator.clipboard.writeText("C6DD460F11A4CA0CFD1E31024EF9E4D9");
-  alert("Code copied");
+function finalWithdraw(){
+  const upi=document.getElementById("upi").value.trim();
+  if(!upi){alert("Please submit UPI ID");return;}
+  document.getElementById("p4").classList.add("hidden");
+  document.getElementById("p5").classList.remove("hidden");
+  document.getElementById("doneAmt").innerText=amount;
 }
 </script>
 
