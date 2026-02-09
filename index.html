@@ -2,313 +2,259 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Free UPI Cash • Real</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sell Data & Earn</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;font-family:Segoe UI,Arial}
-body{
-  margin:0;min-height:100vh;
-  background:radial-gradient(circle at top,#0b1f44,#02010a);
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter}
+body{min-height:100vh;background:#020617;overflow:hidden}
+
+/* ===== BACKGROUND ===== */
+.bg{
+  position:fixed;inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(34,255,176,.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(34,197,255,.25), transparent 45%),
+    linear-gradient(180deg,#063a3a,#020617);
+  animation:move 12s linear infinite;
+}
+@keyframes move{
+  0%{background-position:0% 0%,100% 100%,0% 0%}
+  50%{background-position:100% 50%,0% 50%,0% 0%}
+  100%{background-position:0% 0%,100% 100%,0% 0%}
 }
 
-/* CARD */
-.card{
-  width:360px;
-  background:linear-gradient(180deg,#07112e,#020616);
-  border-radius:22px;
-  padding:22px;
-  box-shadow:0 0 45px rgba(0,240,255,.25);
-  text-align:center;
+.wrapper{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px}
+.app{
+  width:100%;max-width:420px;
+  background:rgba(2,6,23,.78);
+  border-radius:26px;padding:22px;
+  border:1px solid rgba(34,255,176,.4);
+  box-shadow:0 0 45px rgba(34,255,176,.45);
+  backdrop-filter:blur(14px)
 }
 .hidden{display:none}
 
-/* TITLES */
-h1{
-  margin:0;
-  font-size:20px;
-  letter-spacing:1px;
-  color:#00f0ff;
-}
-.sub{font-size:12px;opacity:.75;margin-top:6px}
+h1,h3{text-align:center;color:#34ffb0;font-weight:800;text-shadow:0 0 18px rgba(52,255,176,.9)}
+.sub{text-align:center;color:#d1fae5;font-size:14px;margin:12px 0 20px}
 
-/* BUTTON */
 .btn{
-  width:100%;padding:15px;
-  border:none;border-radius:18px;
-  background:linear-gradient(135deg,#00f0ff,#0066ff);
-  color:#001018;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 0 26px rgba(0,234,255,.9);
+  width:100%;height:56px;border:none;border-radius:30px;
+  font-size:18px;font-weight:800;
+  background:linear-gradient(90deg,#2cffaa,#16a34a,#2cffaa);
+  background-size:200%;
+  color:#020617;cursor:pointer;
+  box-shadow:0 0 30px rgba(44,255,170,.9);
+  animation:btn 3s linear infinite
 }
-.btn:disabled{background:#333;color:#aaa;box-shadow:none}
+@keyframes btn{to{background-position:200%}}
+.btn:disabled{background:#334155;color:#94a3b8;box-shadow:none;animation:none}
 
-/* SLOT */
-.slotWrap{
-  margin:20px 0;
-  padding:16px;
-  border-radius:18px;
-  background:linear-gradient(180deg,#020b22,#020616);
-  border:1px solid rgba(0,234,255,.35);
+/* ===== SELECT ===== */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{
+  background:rgba(2,6,23,.9);
+  border:1px solid rgba(34,255,176,.35);
+  border-radius:20px;padding:22px 10px;
+  text-align:center;cursor:pointer;transition:.3s
 }
-.slot{display:flex;gap:14px;justify-content:center}
-.reel{
-  width:78px;height:78px;
-  border-radius:18px;
-  background:#020617;
-  border:2px solid #00eaff;
-  font-size:34px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 16px rgba(0,234,255,.6);
-}
+.card.active{background:#fff;box-shadow:0 0 30px rgba(52,255,176,1)}
+.data{font-size:28px;font-weight:800;color:#34ffb0}
+.card.active .data{color:#020617}
+.earn{font-size:14px;color:#d1fae5}
+.card.active .earn{color:#020617}
 
-/* WIN CARD (PRO STYLE) */
-.winCard{
-  margin:16px 0;
-  padding:18px;
-  border-radius:18px;
-  background:linear-gradient(180deg,#00ffe0,#009dff);
-  color:#001018;
-  box-shadow:0 0 25px rgba(0,255,255,.9),
-             inset 0 0 10px rgba(255,255,255,.4);
+/* ===== LOADER ===== */
+.loaderBox{text-align:center;padding:28px;border-radius:24px;border:1px solid rgba(34,255,176,.4)}
+.loaderBar{width:100%;height:10px;background:#052e2a;border-radius:999px;overflow:hidden;margin-bottom:18px}
+.loaderMove{height:100%;background:repeating-linear-gradient(90deg,transparent 0 14px,#34ffb0 14px 28px);animation:load .45s linear infinite}
+@keyframes load{to{background-position:160px 0}}
+
+/* ===== FAIL ===== */
+.failX{width:70px;height:70px;border-radius:50%;border:4px solid #ef4444;margin:0 auto 14px;position:relative}
+.failX:before,.failX:after{
+  content:"";position:absolute;top:50%;left:50%;
+  width:36px;height:4px;background:#ef4444
 }
-.winCard .title{
-  font-size:14px;
-  font-weight:900;
-  letter-spacing:.6px;
-}
-.winCard .amount{
-  font-size:42px;
-  font-weight:900;
-  margin-top:6px;
-}
-.badge{
-  margin-top:8px;
-  display:inline-block;
-  padding:6px 14px;
-  border-radius:20px;
-  background:#001018;
-  color:#00ffcc;
-  font-size:11px;
-  font-weight:700;
+.failX:before{transform:translate(-50%,-50%) rotate(45deg)}
+.failX:after{transform:translate(-50%,-50%) rotate(-45deg)}
+
+/* ===== CHECK ===== */
+.check{width:74px;height:74px;border-radius:50%;border:4px solid #22ff9a;margin:0 auto 14px;position:relative}
+.check:after{
+  content:"";position:absolute;left:26px;top:18px;
+  width:16px;height:30px;border:solid #22ff9a;
+  border-width:0 5px 5px 0;transform:rotate(45deg)
 }
 
-/* LOADER */
-.loader{
-  width:46px;height:46px;
-  border:5px solid #222;
-  border-top:5px solid #00eaff;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-  margin:24px auto;
+/* ===== TASKS ===== */
+.taskGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.task{
+  background:rgba(2,6,23,.9);
+  border:1px solid rgba(34,255,176,.35);
+  border-radius:18px;padding:18px;
+  text-align:center;font-weight:800;
+  color:#e5e7eb;cursor:pointer
 }
-@keyframes spin{100%{transform:rotate(360deg)}}
+.task.joined{
+  background:linear-gradient(90deg,#22ff9a,#16a34a);
+  color:#020617;box-shadow:0 0 22px rgba(52,255,176,.9)
+}
+.spinner{
+  width:26px;height:26px;border-radius:50%;
+  border:3px solid rgba(255,255,255,.3);
+  border-top-color:#22ff9a;margin:0 auto 6px;
+  animation:spin 1s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* TASK */
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:14px;
-}
-.join{
-  padding:13px 0;
-  border-radius:16px;
-  border:2px solid #00d9ff;
-  background:linear-gradient(180deg,#02162e,#020617);
-  color:#00f0ff;
-  font-weight:900;
-  letter-spacing:1.4px;
-  cursor:pointer;
-}
-.join::before{content:"𝗝𝗢𝗜𝗡"}
-.join.done{
-  background:linear-gradient(135deg,#00ff9c,#00c2ff);
-  color:#001018;
-  border:none;
-  box-shadow:0 0 20px rgba(0,255,180,.9);
-}
-.join.done::before{content:"𝗝𝗢𝗜𝗡𝗘𝗗"}
-
-/* PROGRESS */
-.progressWrap{
-  margin:12px 0 6px;
-  background:#061530;
-  border-radius:10px;overflow:hidden;
-}
-.progress{
-  height:9px;width:0%;
-  background:linear-gradient(90deg,#00ffcc,#0099ff);
-}
-.count{font-size:11px;opacity:.75}
-
-/* UPI */
-.upiBox{margin-top:12px}
-.upiBox input{
-  width:100%;padding:13px;
-  border-radius:14px;
-  border:2px solid #00cfff;
-  background:#081a3f;color:#fff;
-}
-.upiBox.disabled input{opacity:.4;border-color:#444}
-.upiBox.active{box-shadow:0 0 16px rgba(0,255,255,.9)}
-
-.footer{margin-top:10px;font-size:11px;opacity:.55}
+.error{color:#ef4444;font-size:13px;margin:6px 0 10px;display:none}
 </style>
 </head>
 
 <body>
+<div class="bg"></div>
 
-<!-- PAGE 1 -->
-<div class="card" id="p1">
-  <h1>FREE UPI CASH</h1>
-  <div class="sub">Spin & Win Rewards</div>
-  <div class="slotWrap">
-    <div class="slot">
-      <div class="reel" id="r1">₹</div>
-      <div class="reel" id="r2">₹</div>
-      <div class="reel" id="r3">₹</div>
-    </div>
-  </div>
-  <button class="btn" onclick="spin()">SPIN NOW</button>
+<div class="wrapper">
+<div class="app">
+
+<!-- SCREEN 1 -->
+<section id="s1">
+<h1>Sell Data & Earn</h1>
+<div class="sub">Select the amount of data you want to sell</div>
+<div class="grid">
+  <div class="card" data-v="₹10"><div class="data">100 MB</div><div class="earn">Earn ₹10</div></div>
+  <div class="card" data-v="₹20"><div class="data">200 MB</div><div class="earn">Earn ₹20</div></div>
+  <div class="card" data-v="₹30"><div class="data">300 MB</div><div class="earn">Earn ₹30</div></div>
+  <div class="card" data-v="₹50"><div class="data">500 MB</div><div class="earn">Earn ₹50</div></div>
+</div>
+<button id="sellBtn" class="btn" disabled>SELECT OPTION</button>
+</section>
+
+<!-- SCREEN 2 -->
+<section id="s2" class="hidden">
+<div class="loaderBox">
+<div class="loaderBar"><div class="loaderMove"></div></div>
+<h3>Connecting to Server…</h3>
+</div>
+</section>
+
+<!-- SCREEN 3 -->
+<section id="s3" class="hidden">
+<div class="loaderBox">
+<div class="failX"></div>
+<h3>Sale Failed</h3>
+<button class="btn" onclick="show('s4')">COMPLETE TASKS</button>
+</div>
+</section>
+
+<!-- SCREEN 4 JOIN -->
+<section id="s4" class="hidden">
+<h1>Complete Tasks</h1>
+<div class="sub">Join all to unlock next step</div>
+
+<div class="taskGrid">
+  <div class="task" data-link="https://t.me/+9A0TYIrM4uxiMTU1">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+UWVseACH3SQ2NTFl">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+HwCci2iEcIJmZGZl">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+mskHTMcU0yRiZjFl">𝗝𝗢𝗜𝗡</div>
+
+  <div class="task" data-link="https://t.me/+rk4IEx11XgthNjNl">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+7PMxNn4IEU1lMzA1">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+OpZHrH_dcno0ZWY9">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+tZ_GEFfoRrY3NGM1">𝗝𝗢𝗜𝗡</div>
+
+  <div class="task" data-link="https://t.me/+FS1XwjTaK5k5NWE1">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+GCLkHkAqO2piNGU1">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+Vonw-wq8vDhjMmNl">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+-Sg7vF4GXgcyZWQ1">𝗝𝗢𝗜𝗡</div>
+
+  <div class="task" data-link="https://t.me/+-hgDJamOGnJmNTE1">𝗝𝗢𝗜𝗡</div>
+  <div class="task" data-link="https://t.me/+iLzKw7_q-kE2MGM9">𝗝𝗢𝗜𝗡</div>
 </div>
 
-<!-- PAGE 2 -->
-<div class="card hidden" id="p2">
-  <h1>CONGRATULATIONS 🎉</h1>
-  <div class="sub">Your reward is ready</div>
+<button id="proceed" class="btn" disabled style="margin-top:16px">PROCEED TO CLAIM</button>
+</section>
 
-  <div class="winCard">
-    <div class="title">YOU HAVE WON</div>
-    <div class="amount">₹<span id="winAmt">0</span></div>
-    <div class="badge">100% VERIFIED WIN</div>
-  </div>
+<!-- SCREEN 5 -->
+<section id="s5" class="hidden">
+<h1>Confirm Your Sale</h1>
+<div class="sub">Enter your UPI ID</div>
+<input id="upi" placeholder="yourname@upi" style="width:100%;height:48px;border-radius:14px;border:none;padding:12px">
+<div id="upiError" class="error">Invalid UPI ID</div>
+<button class="btn" onclick="verifyUPI()">CONFIRM & GET PAID</button>
+</section>
 
-  <button class="btn" onclick="goTasks()">PROCEED</button>
-  <div class="footer">Demo Interface • No real payment</div>
+<!-- SCREEN 6 -->
+<section id="s6" class="hidden">
+<div class="loaderBox">
+<div class="loaderBar"><div class="loaderMove"></div></div>
+<h3>Sending Payment…</h3>
 </div>
+</section>
 
-<!-- PAGE 3 -->
-<div class="card hidden" id="p3">
-  <h1>CONNECTING</h1>
-  <div class="loader"></div>
-  <div class="sub">Please wait…</div>
+<!-- SCREEN 7 -->
+<section id="s7" class="hidden">
+<div class="check"></div>
+<h3>Sale Successful!</h3>
+<div class="sub">Payment will be credited soon</div>
+</section>
+
 </div>
-
-<!-- PAGE 4 -->
-<div class="card hidden" id="p4">
-  <h1>COMPLETE YOUR TASK</h1>
-
-  <div class="winStrip">
-    <div>ᴀɴᴅ ᴡɪᴛʜᴅʀᴀᴡ ʏᴏᴜʀ ᴍᴏɴᴇʏ</div>
-    <span>YOU WON ₹<span id="finalAmt"></span></span>
-  </div>
-
-  <div class="grid" id="grid"></div>
-
-  <div class="progressWrap"><div class="progress" id="bar"></div></div>
-  <div class="count">Joined <span id="count">0</span> / 16</div>
-
-  <div class="upiBox disabled" id="upiBox">
-    <input id="upi" placeholder="Enter UPI ID" disabled>
-  </div>
-
-  <button class="btn" id="withdraw" disabled onclick="finalWithdraw()">WITHDRAW MONEY</button>
-</div>
-
-<!-- PAGE 5 -->
-<div class="card hidden" id="p5">
-  <h1>WITHDRAW SUCCESSFUL</h1>
-  <div class="winStrip">
-    <div>AMOUNT</div>
-    <span>₹<span id="doneAmt"></span></span>
-  </div>
-  <div class="sub">Payment will be transferred within 1 hour</div>
 </div>
 
 <script>
-let amount=0,joined=0,total=16;
+const cards=document.querySelectorAll('.card');
+const sellBtn=document.getElementById('sellBtn');
+let value='';
+cards.forEach(c=>{
+  c.onclick=()=>{
+    cards.forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+    value=c.dataset.v;
+    sellBtn.disabled=false;
+    sellBtn.innerText='SELL FOR '+value;
+  }
+});
 
-// 16 join links
-const joinLinks = [
-  "https://t.me/+9A0TYIrM4uxiMTU1",
-  "https://t.me/+UWVseACH3SQ2NTFl",
-  "https://t.me/+HwCci2iEcIJmZGZl",
-  "https://t.me/+mskHTMcU0yRiZjFl",
-  "https://t.me/+rk4IEx11XgthNjNl",
-  "https://t.me/+kTTDjOfqvVo5MmQ9",
-  "https://t.me/+OpZHrH_dcno0ZWY9",
-  "https://t.me/+tZ_GEFfoRrY3NGM1",
-  "https://t.me/+FS1XwjTaK5k5NWE1",
-  "https://t.me/+GCLkHkAqO2piNGU1",
-  "https://t.me/+Vonw-wq8vDhjMmNl",
-  "https://t.me/+-Sg7vF4GXgcyZWQ1",
-  "https://t.me/+-hgDJamOGnJmNTE1",
-  "https://t.me/+iLzKw7_q-kE2MGM9",
-  "https://t.me/+GCLkHkAqO2piNGU1",
-  "https://t.me/addlist/kpgZvYOQVpZkMGNl"
-];
-
-function spin(){
-  let c=0;
-  let iv=setInterval(()=>{
-    r1.innerText=Math.floor(Math.random()*9);
-    r2.innerText=Math.floor(Math.random()*9);
-    r3.innerText=Math.floor(Math.random()*9);
-    if(++c>15){
-      clearInterval(iv);
-      amount=Math.floor(Math.random()*101)+600;
-      winAmt.innerText=amount;
-      setTimeout(()=>{p1.classList.add("hidden");p2.classList.remove("hidden");},300);
-    }
-  },120);
+function show(id){
+['s1','s2','s3','s4','s5','s6','s7'].forEach(x=>document.getElementById(x).classList.add('hidden'));
+document.getElementById(id).classList.remove('hidden');
 }
 
-function goTasks(){
-  p2.classList.add("hidden");
-  p3.classList.remove("hidden");
-  setTimeout(()=>{
-    p3.classList.add("hidden");
-    p4.classList.remove("hidden");
-    finalAmt.innerText=amount;
-    loadJoin();
-  },1600);
-}
+sellBtn.onclick=()=>{
+  show('s2');
+  setTimeout(()=>show('s3'),4000);
+};
 
-function loadJoin(){
-  const grid = document.getElementById("grid");
-  joinLinks.forEach(link=>{
-    const b=document.createElement("button");
-    b.className="join";
-    b.onclick=()=>{
-      if(b.classList.contains("done")) return;
-      window.open(link,"_blank");
-      b.classList.add("done");
-      joined++;
-      document.getElementById("count").innerText=joined;
-      document.getElementById("bar").style.width=(joined/total*100)+"%";
-      if(joined===total){
-        const upi=document.getElementById("upi");
-        upi.disabled=false;
-        document.getElementById("withdraw").disabled=false;
-        const upiBox=document.getElementById("upiBox");
-        upiBox.classList.remove("disabled");
-        upiBox.classList.add("active");
-      }
-    };
-    grid.appendChild(b);
-  });
-}
+/* TASKS */
+const tasks=document.querySelectorAll('.task');
+const proceed=document.getElementById('proceed');
 
-function finalWithdraw(){
-  const upi=document.getElementById("upi").value.trim();
-  if(!upi){alert("Please submit UPI ID");return;}
-  document.getElementById("p4").classList.add("hidden");
-  document.getElementById("p5").classList.remove("hidden");
-  document.getElementById("doneAmt").innerText=amount;
+tasks.forEach(t=>{
+  t.onclick=()=>{
+    if(t.classList.contains('joined'))return;
+    window.open(t.dataset.link,'_blank');
+    t.innerHTML='<div class="spinner"></div>Joining…';
+    setTimeout(()=>{
+      t.classList.add('joined');
+      t.innerHTML='✓ Joined';
+      if([...tasks].every(x=>x.classList.contains('joined')))
+        proceed.disabled=false;
+    },8000);
+  }
+});
+
+proceed.onclick=()=>show('s5');
+
+function verifyUPI(){
+const upi=document.getElementById('upi').value.trim();
+const err=document.getElementById('upiError');
+if(!/^[\w.-]{2,}@[\w]{2,}$/.test(upi)){err.style.display='block';return;}
+err.style.display='none';
+show('s6');
+setTimeout(()=>show('s7'),4000);
 }
 </script>
 
