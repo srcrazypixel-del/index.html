@@ -13,7 +13,6 @@ overflow:hidden;
 color:#fff;
 }
 
-/* Neon animated bg */
 body:before{
 content:"";
 position:fixed;
@@ -84,7 +83,6 @@ margin-bottom:14px;
 box-shadow:0 0 15px rgba(0,255,170,.8);
 }
 
-/* Cards */
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -119,7 +117,6 @@ color:#00ffcc;
 
 .card.active .amount{color:#000}
 
-/* Button */
 .btn{
 width:100%;
 height:52px;
@@ -142,7 +139,6 @@ background:#334155;
 animation:none;
 }
 
-/* Input */
 input{
 width:100%;
 height:48px;
@@ -161,7 +157,6 @@ margin-top:6px;
 display:none;
 }
 
-/* Loader */
 .loader{
 width:60px;
 height:60px;
@@ -173,7 +168,6 @@ animation:spin 1s linear infinite;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Tasks */
 .taskGrid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -189,6 +183,9 @@ text-align:center;
 cursor:pointer;
 font-weight:700;
 transition:.3s;
+color:#fff;
+text-decoration:none;
+display:block;
 }
 
 .task.joined{
@@ -212,7 +209,6 @@ font-size:14px;
 <div class="wrapper">
 <div class="app">
 
-<!-- PAGE 1 -->
 <section id="p1">
 <div class="badge">REAL CASH</div>
 <h1>Select Reward</h1>
@@ -225,13 +221,11 @@ font-size:14px;
 <button id="next1" class="btn" disabled>SELECT AMOUNT</button>
 </section>
 
-<!-- CONNECT -->
 <section id="p2" class="hidden">
 <h1>Connecting Secure Real Cash Server...</h1>
 <div class="loader"></div>
 </section>
 
-<!-- UPI -->
 <section id="p3" class="hidden">
 <h1>Enter Your UPI ID</h1>
 <input id="upiInput" placeholder="your-upi-id@upi">
@@ -239,13 +233,11 @@ font-size:14px;
 <button class="btn" onclick="submitUPI()">Submit</button>
 </section>
 
-<!-- PROCESS -->
 <section id="p4" class="hidden">
 <h1>Processing Real Cash Payment...</h1>
 <div class="loader"></div>
 </section>
 
-<!-- JOIN -->
 <section id="p5" class="hidden">
 <h1>Complete All Tasks To Withdraw</h1>
 
@@ -255,22 +247,23 @@ Selected Amount: <span id="showAmount"></span>
 </div>
 
 <div class="taskGrid">
-<div class="task">JOIN</div>
-<div class="task">JOIN</div>
-<div class="task">JOIN</div>
-<div class="task">JOIN</div>
-<div class="task">JOIN</div>
-<div class="task">JOIN</div>
-<div class="task">JOIN</div>
-<div class="task">JOIN</div>
-<div class="task">JOIN</div>
-<div class="task">JOIN</div>
+<a href="https://t.me/+9A0TYIrM4uxiMTU1" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/+HwCci2iEcIJmZGZl" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/+BDfW7JRRF_FhMGVl" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/+OpZHrH_dcno0ZWY9" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/+rk4IEx11XgthNjNl" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/+FS1XwjTaK5k5NWE1" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/+RiQRPTQf39pmNWFl" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/+Vonw-wq8vDhjMmNl" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/+QzKg9A6sQcE5ZWFl" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/+tZ_GEFfoRrY3NGM1" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/addlist/Hk3pjyyMCFEyZjQ1" target="_blank" class="task">JOIN</a>
+<a href="https://t.me/addlist/Hk3pjyyMCFEyZjQ1" target="_blank" class="task">JOIN</a>
 </div>
 
 <button id="withdrawBtn" class="btn">WITHDRAW REAL CASH</button>
 </section>
 
-<!-- SUCCESS -->
 <section id="p6" class="hidden">
 <h1>Your Payment Successful ✅</h1>
 <div class="sub">Please wait few minutes...</div>
@@ -330,18 +323,18 @@ document.getElementById(id).classList.remove("hidden")
 const tasks=document.querySelectorAll(".task")
 
 tasks.forEach(t=>{
-t.onclick=()=>{
-if(t.classList.contains("joined"))return
+t.addEventListener("click",function(){
+if(t.classList.contains("joined")) return
 t.classList.add("joined")
 t.innerText="✓ Joined"
-}
+})
 })
 
 document.getElementById("withdrawBtn").onclick=()=>{
 if([...tasks].every(t=>t.classList.contains("joined"))){
 show("p6")
 }else{
-alert("Join all channel then withdraw")
+alert("Join all 12 channels then withdraw")
 }
 }
 </script>
